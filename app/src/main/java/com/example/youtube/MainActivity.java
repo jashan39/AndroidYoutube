@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -27,6 +28,8 @@ public class MainActivity extends ActionBarActivity {
     private Handler handler;
 
     private List<VideoItem> searchResults;
+    public static HashMap<String, String> maping = new HashMap<String,String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
 
         handler = new Handler();
         addClickListener();
-
+        maping = YoutubeConnector.getChannels();
     }
 
     public void beginSearch(View view){

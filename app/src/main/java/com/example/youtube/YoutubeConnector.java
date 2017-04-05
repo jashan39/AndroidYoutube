@@ -13,11 +13,14 @@ import com.google.api.services.youtube.model.SearchResult;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class YoutubeConnector {
     private YouTube youtube;
     private YouTube.Search.List query;
+
+    public static HashMap<String, String> motChannels = new HashMap<String, String>();
 
     public static final String KEY = "AIzaSyDhVlgtQftVr2sY68Vt5h07tuPoVmi9ATA";
 
@@ -30,15 +33,19 @@ public class YoutubeConnector {
 
 
         try {
-            query = youtube.search().list("id,snippet");
+            query = youtube.search().list("id, snippet");
             query.setKey(KEY);
             //    query.setChannelId("UCaKZDEMDdQc8t6GzFj1_TDw");
             query.setMaxResults((long)50);
             query.setType("video");
-            query.setFields("items(id/videoId,snippet/title,snippet/channelTitle,snippet/description,snippet/thumbnails/default/url)");
+            query.setFields("items(id/videoId, snippet/title,snippet/channelTitle, snippet/channelId, snippet/description,snippet/thumbnails/default/url)");
         } catch (IOException e) {
             Log.d("YC", "Could not initialize: " + e.getMessage());
         }
+    }
+
+    public static HashMap getChannels(){
+        return motChannels;
     }
 
     public List<VideoItem> search(String keywords) {
@@ -52,6 +59,12 @@ public class YoutubeConnector {
                 VideoItem item = new VideoItem();
                 item.setTitle(result.getSnippet().getTitle());
                 item.setChannelTitle(result.getSnippet().getChannelTitle());
+                item.setChannelID(result.getSnippet().getChannelId());
+
+                if(!motChannels.containsKey(result.getSnippet().getChannelTitle())){
+                    motChannels.put(result.getSnippet().getChannelTitle(),result.getSnippet().getChannelTitle());
+                }
+
                 item.setDescription(result.getSnippet().getDescription());
                 item.setThumbnailURL(result.getSnippet().getThumbnails().getDefault().getUrl());
                 item.setId(result.getId().getVideoId());

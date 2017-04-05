@@ -11,6 +11,7 @@ public class VideoItem {
     private String thumbnailURL;
     private String id;
     private String channelTitle;
+    private String channelID;
 
     public String getTitle() {
         return title;
@@ -50,5 +51,9 @@ public class VideoItem {
 
     public void setChannelTitle(String channelTitle) {
         this.channelTitle = channelTitle;
+    }
+
+    public void setChannelID(String channelID) {
+        this.channelID = channelID;
     }
 }
