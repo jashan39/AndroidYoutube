@@ -50,6 +50,7 @@ public class YoutubeConnector {
 
     public List<VideoItem> search(String keywords) {
         query.setQ(keywords);
+        motChannels.clear();
         try {
             SearchListResponse response = query.execute();
             List<SearchResult> results = response.getItems();

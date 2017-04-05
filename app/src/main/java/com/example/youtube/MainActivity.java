@@ -50,13 +50,14 @@ public class MainActivity extends ActionBarActivity {
         handler = new Handler();
         searchOnYoutube(searchInput.getText().toString());
         addClickListener();
-
+        maping = YoutubeConnector.getChannels();
     }
 
     public void goHome(View view){
         handler = new Handler();
         searchOnYoutube("motivational videos");
         addClickListener();
+        maping = YoutubeConnector.getChannels();
     }
 
     private void searchOnYoutube(final String keywords) {

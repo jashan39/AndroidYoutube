@@ -6,17 +6,25 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 public class allChannels extends AppCompatActivity {
 
-    String[] channels = {"Be Inspired","Video Advice", "Motivation Kings"};
-    String[] channelId = {"UCaKZDEMDdQc8t6GzFj1_TDw", "UCAwylBbx8RiRD3VsaYdwNTw", "UCl2Ja5K8Q5NjI4XbztVM9Yw"};
+    ArrayList<String> channels = new ArrayList<String>();
+    ArrayList<String> channelID = new ArrayList<String>();
+
+    HashMap<String, String> channelInfo = new HashMap<String, String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_channels);
+
+        addtoList();
 
         Intent intent = getIntent();
         String message = intent.getStringExtra("EXTRA_MESSAGE");
@@ -27,6 +35,19 @@ public class allChannels extends AppCompatActivity {
 
         ListView listView =  (ListView)findViewById(R.id.allChannelsList);
         listView.setAdapter(adapter);
+
+
     }
 
+    private void addtoList() {
+        channelInfo = MainActivity.maping;
+        for (String aChannel : channelInfo.keySet()) {
+            channels.add(aChannel);
+        }
+
+        for (String aChannel : channelInfo.values()) {
+            channelID.add(aChannel);
+        }
+
+    }
 }
