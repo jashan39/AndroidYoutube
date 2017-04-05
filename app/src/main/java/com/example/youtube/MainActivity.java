@@ -35,6 +35,7 @@ public class MainActivity extends ActionBarActivity {
         searchOnYoutube("motivational videos");
 
 
+        searchInput = (EditText) findViewById(R.id.search_input);
         videosFound = (ListView) findViewById(R.id.videos_found);
 
         handler = new Handler();
@@ -95,11 +96,12 @@ public class MainActivity extends ActionBarActivity {
         videosFound.setAdapter(adapter);
     }
 
+    /*
     public void exploreChannels(View view){
         Intent intent = new Intent(this, allChannels.class);
         startActivity(intent);
     }
-
+*/
     private void addClickListener() {
         videosFound.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
