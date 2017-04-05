@@ -32,7 +32,7 @@ public class YoutubeConnector {
         try {
             query = youtube.search().list("id,snippet");
             query.setKey(KEY);
-        //    query.setChannelId("UCaKZDEMDdQc8t6GzFj1_TDw");
+            //    query.setChannelId("UCaKZDEMDdQc8t6GzFj1_TDw");
             query.setMaxResults((long)50);
             query.setType("video");
             query.setFields("items(id/videoId,snippet/title,snippet/channelTitle,snippet/description,snippet/thumbnails/default/url)");

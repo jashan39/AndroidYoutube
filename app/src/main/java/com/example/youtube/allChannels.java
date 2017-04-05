@@ -1,5 +1,6 @@
 package com.example.youtube;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -17,8 +18,13 @@ public class allChannels extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_channels);
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_all_channels, channels);
+        Intent intent = getIntent();
+        String message = intent.getStringExtra("EXTRA_MESSAGE");
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, channels);
+
         ListView listView =  (ListView)findViewById(R.id.allChannelsList);
         listView.setAdapter(adapter);
     }

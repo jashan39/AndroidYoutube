@@ -39,18 +39,13 @@ public class MainActivity extends ActionBarActivity {
         videosFound = (ListView) findViewById(R.id.videos_found);
 
         handler = new Handler();
+        addClickListener();
 
-         searchInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_DONE){
-                    searchOnYoutube(v.getText().toString());
-                    return false;
-                }
-                return true;
-            }
-        });
+    }
 
+    public void beginSearch(View view){
+        handler = new Handler();
+        searchOnYoutube(searchInput.getText().toString());
         addClickListener();
 
     }
@@ -96,12 +91,13 @@ public class MainActivity extends ActionBarActivity {
         videosFound.setAdapter(adapter);
     }
 
-    /*
-    public void exploreChannels(View view){
+
+    public void sendMessage(View view){
         Intent intent = new Intent(this, allChannels.class);
+        String message = intent.getStringExtra("EXTRA_MESSAGE");
         startActivity(intent);
     }
-*/
+
     private void addClickListener() {
         videosFound.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

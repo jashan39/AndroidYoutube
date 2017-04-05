@@ -15,7 +15,9 @@
         android:id="@+id/Channel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/video_thumbnail"/>
+        android:layout_alignBottom="@+id/video_thumbnail"
+        android:layout_alignEnd="@+id/video_thumbnail"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/video_title"

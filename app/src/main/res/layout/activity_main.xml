@@ -4,7 +4,7 @@
     android:orientation="vertical" >
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:hint="Search"
         android:id="@+id/search_input"
@@ -24,6 +24,16 @@
         android:text="Channels"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="exploreChannels"/>
+        android:onClick="sendMessage"/>
+
+    <Button
+        android:id="@+id/searchNow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="19dp"
+        android:onClick="beginSearch"
+        android:text="Search" />
 
 </RelativeLayout>
