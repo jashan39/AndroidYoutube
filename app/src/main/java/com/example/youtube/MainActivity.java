@@ -50,6 +50,12 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
+    public void goHome(View view){
+        handler = new Handler();
+        searchOnYoutube("motivational videos");
+        addClickListener();
+    }
+
     private void searchOnYoutube(final String keywords) {
         new Thread(){
             @Override
