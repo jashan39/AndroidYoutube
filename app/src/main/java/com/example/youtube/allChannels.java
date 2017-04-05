@@ -3,6 +3,9 @@ package com.example.youtube;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -36,6 +39,19 @@ public class allChannels extends AppCompatActivity {
         ListView listView =  (ListView)findViewById(R.id.allChannelsList);
         listView.setAdapter(adapter);
 
+        Log.i("s","asda");
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                Intent intent2 = new Intent(allChannels.this, displayChannnel.class);
+                String message = channelID.get(position);
+                intent2.putExtra("EXTRA_MESSAGE2", message);
+                startActivity(intent2);
+            }
+        });
+
 
     }
 
@@ -47,6 +63,7 @@ public class allChannels extends AppCompatActivity {
 
         for (String aChannel : channelInfo.values()) {
             channelID.add(aChannel);
+            Log.i("asd",aChannel);
         }
 
     }

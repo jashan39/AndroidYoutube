@@ -22,7 +22,8 @@
         <activity android:name=".playerActivity">
             android:screenOrientation="landscape"/>
         </activity>
-        <activity android:name=".allChannels"></activity>
+        <activity android:name=".allChannels" />
+        <activity android:name=".displayChannnel"></activity>
     </application>
 
 </manifest>

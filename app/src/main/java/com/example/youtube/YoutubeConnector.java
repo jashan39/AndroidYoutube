@@ -44,13 +44,37 @@ public class YoutubeConnector {
         }
     }
 
+    public YoutubeConnector(Context context, String channelID) {
+        youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
+            @Override
+            public void initialize(HttpRequest httpRequest) throws IOException {
+            }
+        }).setApplicationName(context.getString(R.string.app_name)).build();
+
+
+        try {
+            query = youtube.search().list("id, snippet");
+            query.setKey(KEY);
+            query.setChannelId(channelID);
+            query.setMaxResults((long)50);
+            query.setType("video");
+            query.setFields("items(id/videoId, snippet/title,snippet/channelTitle, snippet/channelId, snippet/description,snippet/thumbnails/default/url)");
+        } catch (IOException e) {
+            Log.d("YC", "Could not initialize: " + e.getMessage());
+        }
+    }
+
+
     public static HashMap getChannels(){
         return motChannels;
     }
 
+    public static void clearList(){
+        motChannels.clear();
+    }
+
     public List<VideoItem> search(String keywords) {
         query.setQ(keywords);
-        motChannels.clear();
         try {
             SearchListResponse response = query.execute();
             List<SearchResult> results = response.getItems();
@@ -63,7 +87,7 @@ public class YoutubeConnector {
                 item.setChannelID(result.getSnippet().getChannelId());
 
                 if(!motChannels.containsKey(result.getSnippet().getChannelTitle())){
-                    motChannels.put(result.getSnippet().getChannelTitle(),result.getSnippet().getChannelTitle());
+                    motChannels.put(result.getSnippet().getChannelTitle(),result.getSnippet().getChannelId());
                 }
 
                 item.setDescription(result.getSnippet().getDescription());
